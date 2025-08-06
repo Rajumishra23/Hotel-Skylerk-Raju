@@ -1,58 +1,59 @@
-import React from "react";
-import { useState } from "react";
-import { IoSearch } from "react-icons/io5";
-// import Cards from "./pages/Cards";
-// import { hotelData } from "./pages/data";
+// HotelRoomModal.jsx
+import React, { useState } from "react";
 
-const App = () => {
-  const [filteredData, setFilteredData] = useState(hotelData);
 
-  const handleSearch = (event) => {
-    const searchValue = event.target.value.toLowerCase();
+const HotelRoomModal = ({ hotel, onClose }) => {
+  const [roomType, setRoomType] = useState("");
 
-    const newData = hotelData.filter((hotel) =>
-      hotel.name.toLowerCase().includes(searchValue)
-    );
-    setFilteredData(newData);
+  const handleBooking = () => {
+    if (roomType) {
+     let price = "";
+if (roomType === "Single Room") price = 1000;
+else if (roomType === "Double Room") price = 2000;
+else if (roomType === "Suite") price = 5000;
+
+alert(`Booking confirmed for ${hotel.name} - ${roomType} at ₹${price}`);
+
+      onClose();
+    } else {
+      alert("Please select a room type.");
+    }
   };
 
   return (
-    <>
-      <div className="w-full bg-white shadow-md h-20 flex justify-between items-center px-8">
-        <h1 className="text-3xl font-bold">🏨 HotelBook</h1>
-        <div className="flex items-center gap-2 border px-4 py-2 rounded-full">
-          <input
-            onChange={handleSearch}
-            type="text"
-            placeholder="Search Hotels"
-            className="outline-none"
-          />
-          <IoSearch />
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40">
+      <div className="bg-white p-6 rounded-lg w-full max-w-md shadow-md relative">
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-lg font-bold"
+        >
+          ✕
+        </button>
+        <h2 className="text-xl font-semibold mb-4">{hotel.name}</h2>
+        <p className="mb-2">{hotel.description}</p>
+        <p className="mb-4">Location: {hotel.location}</p>
+        <div className="mb-4">
+          <label className="block mb-2 font-medium">Choose a room type:</label>
+          <select
+            value={roomType}
+            onChange={(e) => setRoomType(e.target.value)}
+            className="w-full border border-gray-300 rounded px-3 py-2"
+          >
+            <option value="">Select Room</option>
+            <option value="Single Room">Single Room - ₹1000</option>
+            <option value="Double Room">Double Room - ₹2000</option>
+            <option value="Suite">Suite - ₹5000</option>
+          </select>
         </div>
+        <button
+          onClick={handleBooking}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Book Now
+        </button>
       </div>
-
-      <div className="px-10 py-4">
-        <h2 className="text-xl font-semibold">Top Hotels</h2>
-        <p className="text-gray-500 text-sm">
-          Search your favourite hotels and enjoy your vacation.
-        </p>
-
-        {/* Hotels */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredData.map((hotel) => (
-            <Cards
-              key={hotel.id}
-              name={hotel.name}
-              location={hotel.location}
-              price={hotel.price}
-              image={hotel.image}
-              rating={hotel.rating}
-            />
-          ))}
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 
-export default App;
+export default HotelRoomModal;
