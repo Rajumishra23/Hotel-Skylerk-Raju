@@ -73,30 +73,48 @@ const Gallery = () => {
       transition={{ duration: 0.8 }}
     >
       <div className="max-w-7xl mx-auto">
+        {/* Heading */}
         <motion.h1
-          className="text-4xl font-bold text-center text-gray-800 mb-4"
+          className="text-4xl font-bold text-center text-gray-800 mb-2"
           initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
         >
           Gallery
         </motion.h1>
+
+        {/* Gradient Underline */}
+        <motion.div
+          className="w-24 h-[3px] bg-gradient-to-r from-[#f4a261] via-[#e07a5f] to-[#b85c38] rounded-full mx-auto mb-6"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          style={{ transformOrigin: 'left' }}
+        />
+
+        {/* Description */}
         <motion.p
           className="text-center text-gray-600 mb-12"
           initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true }}
         >
           Explore the beauty and elegance of our hotel through our gallery.
         </motion.p>
+
+        {/* Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {galleryImages.map((image, index) => (
             <motion.div
               key={image.id}
               className="relative overflow-hidden rounded-lg shadow-lg group"
               initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
               whileHover={{ scale: 1.05 }}
             >
               <img
@@ -105,7 +123,7 @@ const Gallery = () => {
                 className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
-                <p className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center px-4">
                   {image.alt}
                 </p>
               </div>

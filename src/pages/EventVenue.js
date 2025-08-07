@@ -6,7 +6,7 @@ const venues = [
   {
     id: 1,
     name: 'Grand Ballroom',
-    description: 'Our elegant Grand Ballroom is perfect...',
+    description: 'Our elegant Grand Ballroom is perfect for lavish weddings, corporate galas, and large-scale celebrations with up to 500 guests.',
     image: Grandballeroom,
     isVideo: true,
   },
@@ -31,40 +31,57 @@ const venues = [
 const EventVenue = () => {
   return (
     <motion.section
-      className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen bg-gradient-to-br from-[#fef4ed] to-[#fff8f2] py-12 px-4 sm:px-6 lg:px-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
       <div className="max-w-7xl mx-auto">
+        {/* Heading */}
         <motion.h1
-          className="text-4xl font-bold text-center text-gray-800 mb-4"
+          className="text-4xl font-bold text-center text-gray-800 mb-2"
           initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
         >
           Event Venues
         </motion.h1>
+
+        {/* Gradient Underline */}
+        <motion.div
+          className="w-24 h-[3px] bg-gradient-to-r from-[#f4a261] via-[#e07a5f] to-[#b85c38] rounded-full mx-auto mb-6"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          style={{ transformOrigin: 'left' }}
+        />
+
+        {/* Description */}
         <motion.p
-          className="text-center text-gray-600 mb-12 max-w-2xl mx-auto"
+          className="text-center text-gray-700 mb-12 max-w-2xl mx-auto"
           initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true }}
         >
           Discover our versatile event spaces designed to make your special occasions unforgettable, from grand celebrations to professional gatherings.
         </motion.p>
+
+        {/* Venue Cards */}
         <div className="space-y-12">
           {venues.map((venue, index) => (
             <motion.div
               key={venue.id}
-              className={`flex flex-col md:flex-row items-center bg-white rounded-lg shadow-lg overflow-hidden ${
-                index % 2 === 1 ? 'md:flex-row-reverse' : ''
-              }`}
+              className={`flex flex-col md:flex-row items-center bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
               initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              whileInView={{ y: 0, opacity: 1 }}
               whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true }}
             >
+              {/* Media */}
               <div className="md:w-1/2">
                 {venue.isVideo ? (
                   <video
@@ -83,10 +100,12 @@ const EventVenue = () => {
                   />
                 )}
               </div>
+
+              {/* Content */}
               <div className="md:w-1/2 p-6">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-3">{venue.name}</h2>
-                <p className="text-gray-600">{venue.description}</p>
-                <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-300">
+                <h2 className="text-2xl font-semibold text-[#b85c38] mb-3">{venue.name}</h2>
+                <p className="text-gray-700">{venue.description}</p>
+                <button className="mt-4 bg-[#b85c38] text-white px-4 py-2 rounded-md hover:bg-[#a14a2c] transition-colors duration-300">
                   Book Now
                 </button>
               </div>

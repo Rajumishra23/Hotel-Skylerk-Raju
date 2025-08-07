@@ -23,42 +23,60 @@ const features = [
 export default function Room() {
   return (
     <div className="px-4 sm:px-8 lg:px-16 py-8 text-center bg-gray-50 overflow-hidden">
-      {/* Heading with Gradient Color */}
-      <motion.h2
-        className="text-4xl font-bold  text-gray-800 mb-2"
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        Our_Rooms
-      </motion.h2>
 
-      {/* Description */}
-      <motion.p
-        className="text-center text-gray-600 mb-12"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        viewport={{ once: true }}
-      >
-        Welcome to Hotel Skylerk — where comfort meets elegance. Our rooms are thoughtfully designed to offer a peaceful retreat with modern amenities and warm hospitality. Whether you're visiting for leisure or business, we ensure a relaxing and memorable stay.
-      </motion.p>
-
-      {/* Hero Image */}
+      {/* Hero Image with Text Overlay */}
       <motion.div
-        className="relative mb-12"
+        className="relative mb-12 rounded-lg overflow-hidden"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
+        {/* Blurred Image */}
         <img
           src={img}
           alt="Hotel View"
-          className="w-full h-[60vh] sm:h-[75vh] object-cover rounded-lg shadow-xl"
+          className="w-full h-[60vh] sm:h-[75vh] object-cover filter brightness-[0.6] blur-[1px]"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
+
+        {/* Text Overlay */}
+        <motion.div
+          className="absolute inset-0 flex flex-col items-center justify-center text-white px-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2
+            className="text-4xl sm:text-5xl font-bold text-white"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Our_Rooms
+          </motion.h2>
+
+          {/* Underline Animation */}
+          <motion.div
+            className="w-24 h-[3px] bg-white rounded-full mt-2 mb-4"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            style={{ transformOrigin: 'left' }}
+          />
+
+          <motion.p
+            className="text-sm sm:text-base max-w-2xl text-center text-white opacity-90"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Welcome to Hotel Skylerk — where comfort meets elegance. Our rooms are thoughtfully designed to offer a peaceful retreat with modern amenities and warm hospitality. Whether you're visiting for leisure or business, we ensure a relaxing and memorable stay.
+          </motion.p>
+        </motion.div>
       </motion.div>
 
       {/* Two Room Images */}

@@ -57,13 +57,24 @@ const Facilities = () => {
     >
       <div className="text-center mb-10">
         <motion.h2
-          className="text-4xl font-bold  text-gray-800 mb-2"
+          className="text-4xl font-bold text-gray-800 mb-2"
           initial={{ y: -20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
           Our_Facilities
         </motion.h2>
+
+        {/* Gradient Underline */}
+        <motion.div
+          className="w-24 h-[3px] bg-gradient-to-r from-[#f4a261] via-[#e07a5f] to-[#b85c38] rounded-full mx-auto mb-4"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          style={{ transformOrigin: 'left' }}
+        />
+
         <motion.p
           className="text-center text-gray-600 mb-12"
           initial={{ y: -20, opacity: 0 }}
@@ -91,31 +102,33 @@ const Facilities = () => {
         {facilities.map((facility) => (
           <motion.div
             key={facility.id}
-            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
+            className="relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group"
             variants={{
               hidden: { opacity: 0, y: 50 },
               visible: { opacity: 1, y: 0 }
             }}
             whileHover={{ scale: 1.03 }}
           >
-            <motion.img
-              src={facility.image}
-              alt={facility.name}
-              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-              initial={{ scale: 0.95, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            />
-            <div className="p-4">
-              <motion.h3
-                className="text-xl font-semibold text-[#b85c38]"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {facility.name}
-              </motion.h3>
+            {/* Blurred Image with Overlay */}
+            <div className="relative">
+              <motion.img
+                src={facility.image}
+                alt={facility.name}
+                className="w-full h-48 object-cover filter brightness-[0.6] blur-[1px] group-hover:scale-105 transition-transform duration-500"
+                initial={{ scale: 0.95, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center px-4">
+                <h3 className="text-white text-lg font-semibold text-center">
+                  {facility.name}
+                </h3>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className="p-4 bg-white">
               <motion.p
                 className="text-gray-600 mt-2 text-sm leading-relaxed"
                 initial={{ opacity: 0 }}
