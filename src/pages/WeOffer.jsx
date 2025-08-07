@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 
 import Img1 from '../assets/Image/Slider/weddings.jpeg';
@@ -14,7 +15,6 @@ import food6 from '../assets/Image/Slider/FoodItems/food6.jpg';
 
 import ResortHero from './ResortHero';
 
-// All services
 const services = [
   {
     title: 'Weddings & Engagements',
@@ -44,32 +44,24 @@ const services = [
   },
 ];
 
-// Animation variants
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.3,
-    },
-  },
-};
-
-const card = {
-  hidden: { opacity: 0, x: -80 },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.7,
-      ease: 'easeOut',
-    },
-  },
-};
-
 export default function WeOffer() {
+  const scrollRef = useRef(null);
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
+
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
-      <section className="bg-[#fff7f0] py-14 px-4 md:px-12">
+      <section className="bg-[#fff7f0] py-14 px-4 md:px-12 overflow-hidden">
         <motion.h2
           className="text-4xl font-bold text-center text-gray-900 mb-10"
           initial={{ opacity: 0, y: -30 }}
@@ -82,45 +74,59 @@ export default function WeOffer() {
           We Offer
         </motion.h2>
 
-        {/* Fixed Layout Issue: Removed justify-items-center */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
-        >
-          {services.map((service, idx) => (
-            <motion.div
-              key={idx}
-              variants={card}
-              className="relative rounded-xl overflow-hidden shadow-md group w-full max-w-sm mx-auto h-[300px] cursor-pointer"
-            >
-              {service.isFoodSection ? (
-                <div className="w-full h-full grid grid-cols-2 gap-1">
-                  {service.foodImages.map((img, i) => (
-                    <img
-                      key={i}
-                      src={img}
-                      alt={`food-${i}`}
-                      className="w-full h-36 object-cover"
-                    />
-                  ))}
+        {/* Scrollable Row with Buttons */}
+        <div className="relative">
+          {/* Left Scroll Button */}
+          <button
+            onClick={scrollLeft}
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-blue text-white px-4 py-2 rounded-full shadow-md hover:bg-[#b85c38] transition z-10"
+          >
+            ◀
+          </button>
+
+          <div
+            ref={scrollRef}
+            className="flex overflow-x-auto space-x-6 scrollbar-hide px-2 pb-4"
+          >
+            {services.map((service, idx) => (
+              <div
+                key={idx}
+                className="relative min-w-[280px] sm:min-w-[300px] md:min-w-[320px] lg:min-w-[340px] rounded-xl overflow-hidden shadow-md group h-[300px] cursor-pointer"
+              >
+                {service.isFoodSection ? (
+                  <div className="w-full h-full grid grid-cols-2 gap-1">
+                    {service.foodImages.map((img, i) => (
+                      <img
+                        key={i}
+                        src={img}
+                        alt={`food-${i}`}
+                        className="w-full h-36 object-cover"
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <img
+                    src={service.img}
+                    alt={service.title}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
+                  />
+                )}
+                <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-60 transition duration-700 flex flex-col justify-end p-4 text-white">
+                  <h3 className="text-lg font-bold mb-1">{service.title}</h3>
+                  <p className="text-xs text-gray-200">{service.desc}</p>
                 </div>
-              ) : (
-                <img
-                  src={service.img}
-                  alt={service.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
-                />
-              )}
-              <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-60 transition duration-700 flex flex-col justify-end p-4 text-white">
-                <h3 className="text-lg font-bold mb-1">{service.title}</h3>
-                <p className="text-xs text-gray-200">{service.desc}</p>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </div>
+
+          {/* Right Scroll Button */}
+          <button
+            onClick={scrollRight}
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue text-white px-4 py-2 rounded-full shadow-md hover:bg-[#b85c38] transition z-10"
+          >
+            ▶
+          </button>
+        </div>
       </section>
 
       <ResortHero />
