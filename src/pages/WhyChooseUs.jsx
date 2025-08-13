@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
-import roomImage from '../assets/Image/Slider/serve img11.jpg';
 import { FaHotel, FaHandsHelping, FaMapMarkerAlt, FaSwimmingPool } from 'react-icons/fa';
 import InstagramGallery from './InstagramGallery';
+
+// Video ko public/videos folder me rakho
+// Example: public/videos/whychooseus.mp4
 
 const reasons = [
   {
@@ -83,7 +85,7 @@ export default function WhyChooseUs() {
             ))}
           </motion.div>
 
-          {/* Right Image */}
+          {/* Right Video */}
           <motion.div
             initial={{ opacity: 0, rotate: -2, scale: 0.95 }}
             whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
@@ -91,16 +93,17 @@ export default function WhyChooseUs() {
             viewport={{ once: true }}
             className="relative group"
           >
-            {/* Animated Overlay */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-[#b85c38] via-transparent to-[#f4a261] opacity-20 rounded-xl z-10 group-hover:opacity-30 transition-opacity"
             />
 
-            {/* Main Image */}
-            <motion.img
-              src={roomImage}
-              alt="Hotel Skylark Room"
-              className="w-full h-auto rounded-xl shadow-xl relative z-0 group-hover:scale-105 transition-transform duration-500"
+            <motion.video
+              src="/videos/bed.mp4"
+              autoPlay
+              loop
+              muted
+              controls
+              className="w-full h-auto rounded-xl shadow-xl relative z-0 group-hover:scale-105 transition-transform duration-500 object-cover"
               whileHover={{ scale: 1.02 }}
             />
           </motion.div>

@@ -2,7 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const easing = [0.6, -0.05, 0.01, 0.99]; // smooth easing curve
+// Images
+import hotelimg from '../assets/Image/Slider/hotelimg.png'; // ✅ correct path
+
+const easing = [0.6, -0.05, 0.01, 0.99];
 
 const fadeUpVariant = {
   initial: { opacity: 0, y: 20 },
@@ -12,7 +15,6 @@ const fadeUpVariant = {
 const About = () => (
   <section className="py-16 bg-white">
     <div className="max-w-6xl mx-auto px-4">
-
       {/* Heading */}
       <motion.h2
         className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-10"
@@ -67,11 +69,22 @@ const About = () => (
           animate="animate"
           transition={{ delay: 0.7 }}
         >
-          <img
-            src="Lucknow.png"
-            alt="Skylark Hotel Lucknow Heritage"
-            className="w-full object-cover rounded"
-          />
+          {false ? (
+            <video
+              src="/videos/Lucknow.mp4"
+              autoPlay
+              loop
+              muted
+              controls
+              className="w-full object-cover rounded"
+            />
+          ) : (
+            <img
+              src={hotelimg}
+              alt="Skylark Hotel Lucknow Heritage"
+              className="w-full object-cover rounded"
+            />
+          )}
         </motion.div>
 
         <motion.p
@@ -117,11 +130,22 @@ const About = () => (
           animate="animate"
           transition={{ delay: 1.1 }}
         >
-          <img
-            src="Corbett.png"
-            alt="Skylark Resort & Spa Corbett"
-            className="w-full object-cover rounded"
-          />
+          {true ? (
+            <video
+              src="/videos/hotelandar.mp4"
+              autoPlay
+              loop
+              muted
+              controls
+              className="w-full object-cover rounded"
+            />
+          ) : (
+            <img
+              src="Corbett.png"
+              alt="Skylark Resort & Spa Corbett"
+              className="w-full object-cover rounded"
+            />
+          )}
         </motion.div>
 
         {/* Hotels in New Delhi */}
@@ -150,11 +174,22 @@ const About = () => (
           animate="animate"
           transition={{ delay: 1.4 }}
         >
-          <img
-            src="delhi.png"
-            alt="Hotels in New Delhi by Skylark Hotels & Resorts"
-            className="w-full object-cover rounded"
-          />
+          {true ? (
+            <video
+              src="/videos/frontvideo.mp4"
+              autoPlay
+              loop
+              muted
+              controls
+              className="w-full object-cover rounded"
+            />
+          ) : (
+            <img
+              src=""
+              alt="Skylark Hotels in New Delhi"
+              className="w-full object-cover rounded"
+            />
+          )}
         </motion.div>
       </div>
 
