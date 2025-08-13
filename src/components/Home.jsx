@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 import WeOffer from '../pages/WeOffer';
+import About from '../components/About'; // ✅ About section import
 import { Link } from 'react-router-dom';
 
 const sliderImages = [
@@ -17,9 +18,43 @@ const sliderImages = [
   require('./../assets/Image/Slider/Image7.avif'),
 ];
 
+// ✅ Welcome Section
+function WelcomeSection() {
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+        {/* Left Image */}
+        <div className="overflow-hidden ">
+          <img
+            src="/Welcome.png"
+            alt="Welcome"
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+
+        {/* Right Side Text */}
+        <div>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">
+            Welcome to <span className="text-yellow-500">Hotel Skylark</span>
+          </h2>
+          <p className="text-gray-600 mb-6 leading-relaxed">
+            Experience the perfect blend of comfort, luxury, and world-class hospitality. 
+            Our beautifully designed rooms, top-notch amenities, and exceptional services 
+            ensure an unforgettable stay for our guests.
+          </p>
+          <button className="px-6 py-2 bg-yellow-500 text-white font-medium rounded-full hover:bg-yellow-600 transition-all duration-300">
+            Learn More
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <>
+      {/* Hero Slider */}
       <header className="relative h-[75vh] overflow-hidden">
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectFade]}
@@ -77,10 +112,15 @@ export default function Home() {
           ))}
         </Swiper>
       </header>
-
+      <WelcomeSection />
+      <div className="py-8">
+        <About />
+      </div>
       <div className="py-8">
         <WeOffer />
       </div>
+
+      
     </>
   );
 }

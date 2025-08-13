@@ -84,7 +84,7 @@ const Gallery = () => {
           Gallery
         </motion.h1>
 
-        {/* Gradient Underline */}
+    
         <motion.div
           className="w-24 h-[3px] bg-gradient-to-r from-[#f4a261] via-[#e07a5f] to-[#b85c38] rounded-full mx-auto mb-6"
           initial={{ scaleX: 0 }}

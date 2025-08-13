@@ -7,8 +7,7 @@ import Facilities from './pages/Facilities.jsx'
 import Gallery from './pages/Gallery.jsx';
 import EventVenue from './pages/EventVenue.js';
 import ContactUs from './pages/ContactUs.jsx';
-import Login from './pages/LoginForm.jsx';
-import SignupForm from './pages/SignupForm';
+
 
 
 function App() {
@@ -22,8 +21,6 @@ function App() {
          <Route path="/gallery" element={<Gallery />} />
         <Route path="/event" element={<EventVenue />} />
         <Route path="/contact" element={<ContactUs />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignupForm />} />
      
       </Routes>
       <Footer />

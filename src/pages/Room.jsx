@@ -34,7 +34,7 @@ export default function Room() {
       >
         {/* Blurred Image */}
         <img
-          src={img}
+          src='HotelRoom.png'
           alt="Hotel View"
           className="w-full h-[60vh] sm:h-[75vh] object-cover filter brightness-[0.6] blur-[1px]"
         />
@@ -48,7 +48,7 @@ export default function Room() {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-4xl sm:text-5xl font-bold text-white"
+            className="text-2xl sm:text-3xl font-bold text-white"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -68,7 +68,7 @@ export default function Room() {
           />
 
           <motion.p
-            className="text-sm sm:text-base max-w-2xl text-center text-white opacity-90"
+            className="text-sm sm:text-base max-w-1xl text-center text-white opacity-90"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -92,10 +92,11 @@ export default function Room() {
               viewport={{ once: true }}
             >
               <img
-                src={image}
+                src="delux.png"
                 alt={`Room ${i + 1}`}
                 className="w-full h-[350px] object-cover transform group-hover:scale-105 transition duration-500"
               />
+              
               <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
                 <p className="text-white text-lg font-semibold">
                   {i === 0 ? 'Deluxe Room' : 'Executive Room'}

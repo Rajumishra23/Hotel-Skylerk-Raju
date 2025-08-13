@@ -12,11 +12,11 @@ export default function Navbar() {
             alt="Hotel Skylark Logo"
             className="h-12 w-auto object-contain"
           />
-          <span className="text-2xl font-bold text-gray-800">Hotel Skylark</span>
+          <span className="text-2xl font-bold text-[#2f2626]">Hotel Skylark</span>
         </Link>
 
         {/* Navigation Links */}
-        <div className="hidden md:flex items-center space-x-8 text-gray-800 font-semibold uppercase text-sm tracking-wide">
+        <div className="hidden md:flex items-center space-x-8 text-[#4c3c3c] font-semibold uppercase text-sm tracking-wide">
           <Link to="/" className="hover:text-[#B38C5B] transition">Home</Link>
           <Link to="/room" className="hover:text-[#B38C5B] transition">Rooms</Link>
           <Link to="/facilities" className="hover:text-[#B38C5B] transition">Facilities</Link>
