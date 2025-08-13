@@ -26,7 +26,7 @@ function WelcomeSection() {
         {/* Left Image */}
         <div className="overflow-hidden ">
           <img
-            src="Welcome.png"
+            src="welcome.png"
             alt="Welcome"
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
           />
