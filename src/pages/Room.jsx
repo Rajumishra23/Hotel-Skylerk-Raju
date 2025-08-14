@@ -5,7 +5,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import img from './../assets/Hotel-Image/img-beding.jpg';
 import Hotel_img_2 from '../assets/Hotel-Image/Hotel_img-2.jpg';
 import Hotel_img_3 from '../assets/Hotel-Image/Hotel_img-3.jpg';
 
@@ -24,7 +23,7 @@ export default function Room() {
   return (
     <div className="px-4 sm:px-8 lg:px-16 py-8 text-center bg-gray-50 overflow-hidden">
 
-      {/* Hero Image with Text Overlay */}
+      {/* Hero Video with Text Overlay */}
       <motion.div
         className="relative mb-12 rounded-lg overflow-hidden"
         initial={{ opacity: 0, scale: 0.95 }}
@@ -32,51 +31,54 @@ export default function Room() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        {/* Blurred Image */}
-        <img
-          src='HotelRoom.png'
-          alt="Hotel View"
-          className="w-full h-[60vh] sm:h-[75vh] object-cover filter brightness-[0.6] blur-[1px]"
-        />
-
-        {/* Text Overlay */}
-        <motion.div
-          className="absolute inset-0 flex flex-col items-center justify-center text-white px-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <motion.h2
-            className="text-2xl sm:text-3xl font-bold text-white"
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            Our_Rooms
-          </motion.h2>
-
-          {/* Underline Animation */}
-          <motion.div
-            className="w-24 h-[3px] bg-white rounded-full mt-2 mb-4"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            style={{ transformOrigin: 'left' }}
+        <>
+          <video
+            src="/videos/hotelroom.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls={false}
+            className="w-full h-[60vh] sm:h-[75vh] object-cover filter brightness-[0.6] blur-[1px] bg-black"
           />
 
-          <motion.p
-            className="text-sm sm:text-base max-w-1xl text-center text-white opacity-90"
+          <motion.div
+            className="absolute inset-0 flex flex-col items-center justify-center text-white px-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            Welcome to Hotel Skylerk — where comfort meets elegance. Our rooms are thoughtfully designed to offer a peaceful retreat with modern amenities and warm hospitality. Whether you're visiting for leisure or business, we ensure a relaxing and memorable stay.
-          </motion.p>
-        </motion.div>
+            <motion.h2
+              className="text-2xl sm:text-3xl font-bold text-white"
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              Our_Rooms
+            </motion.h2>
+
+            <motion.div
+              className="w-24 h-[3px] bg-white rounded-full mt-2 mb-4"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              style={{ transformOrigin: 'left' }}
+            />
+
+            <motion.p
+              className="text-sm sm:text-base max-w-1xl text-center text-white opacity-90"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              Welcome to Hotel Skylerk — where comfort meets elegance. Our rooms are thoughtfully designed to offer a peaceful retreat with modern amenities and warm hospitality. Whether you're visiting for leisure or business, we ensure a relaxing and memorable stay.
+            </motion.p>
+          </motion.div>
+        </>
       </motion.div>
 
       {/* Two Room Images */}
@@ -96,7 +98,7 @@ export default function Room() {
                 alt={`Room ${i + 1}`}
                 className="w-full h-[350px] object-cover transform group-hover:scale-105 transition duration-500"
               />
-              
+
               <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
                 <p className="text-white text-lg font-semibold">
                   {i === 0 ? 'Deluxe Room' : 'Executive Room'}
